@@ -25,4 +25,15 @@ class FolderData extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  Folders? folderNameToEdit(String title) {
+    Folders? folderToEdit = null;
+    for (int i = 0; i < myfolders.length; i++) {
+      if (myfolders[i].title == title) {
+        folderToEdit = myfolders[i];
+        break;
+      }
+    }
+    return folderToEdit;
+  }
 }

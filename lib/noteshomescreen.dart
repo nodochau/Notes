@@ -22,7 +22,7 @@ class NotesHomeScreen extends StatelessWidget {
                     bottom: MediaQuery.of(context).viewInsets.bottom),
                 child: Container(
                   color: const Color.fromARGB(255, 60, 116, 213),
-                  child: AddFolders(),
+                  child: const AddFolders(),
                 ),
               ),
             ),
@@ -37,7 +37,7 @@ class NotesHomeScreen extends StatelessWidget {
         backgroundColor: Colors.black,
         title: const Text('NOTE FOLDERS'),
       ),
-      body: FolderList(),
+      body: const FolderList(),
     );
   }
 }

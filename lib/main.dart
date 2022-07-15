@@ -15,9 +15,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => FolderData(),
-      child: const MaterialApp(
-        home: NotesHomeScreen(),
-      ),
+      child: MaterialApp(initialRoute: 'homeScreen', routes: {
+        'homeScreen': (context) => const NotesHomeScreen(),
+      }),
     );
   }
 }
