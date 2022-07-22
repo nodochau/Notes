@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'folders.dart';
+import 'folders_screen.dart';
 
 class FolderData extends ChangeNotifier {
   List<Folders> myfolders = [
     const Folders(title: 'Programs'),
-    const Folders(title: 'Banks'),
+    const Folders(title: 'Okuma'),
   ];
 
   int get listCount {
@@ -26,14 +26,13 @@ class FolderData extends ChangeNotifier {
     notifyListeners();
   }
 
-  Folders? folderNameToEdit(String title) {
-    Folders? folderToEdit = null;
-    for (int i = 0; i < myfolders.length; i++) {
-      if (myfolders[i].title == title) {
-        folderToEdit = myfolders[i];
-        break;
-      }
-    }
-    return folderToEdit;
-  }
+  // EditFolder editFolder(String title) {
+  //   for (int i = 0; i < myfolders.length; i++) {
+  //     if (myfolders[i].title == title) {
+  //       //Do something
+  //       return EditFolder(folderName: title);
+  //     }
+  //   }
+  //   notifyListeners();
+  // }
 }

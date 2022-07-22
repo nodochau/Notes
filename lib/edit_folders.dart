@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:my_notes/add_details.dart';
+import 'package:my_notes/details_data.dart';
+import 'package:my_notes/details_list.dart';
 
 class EditFolder extends StatelessWidget {
   final String folderName;
@@ -7,39 +10,27 @@ class EditFolder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextEditingController editingControler = TextEditingController();
-    final items = List<String>.generate(1000, (i) => "$folderName $i");
-    List<String> myItems = [];
-    //Create function to search item in list
-    List searchItems(String item) {
-      List<String> tempSearchList = [];
-      tempSearchList.addAll(items);
-      if (item.isNotEmpty) {
-        List<String> itemFound = [];
-        for (var element in tempSearchList) {
-          if (element.contains(item)) {
-            itemFound.add(element);
-          }
-        }
-        myItems.clear();
-        myItems.addAll(itemFound);
-      } else {
-        myItems.clear();
-        myItems.addAll(items);
-      }
-      return myItems;
-    }
-
-    //Create function to show list of items
-    void updateItemList() {
-      items.clear();
-      items.addAll(myItems);
-    }
 
     return Scaffold(
         backgroundColor: Colors.grey[900],
         floatingActionButton: FloatingActionButton(
           backgroundColor: const Color.fromARGB(255, 5, 6, 84),
-          onPressed: () {},
+          onPressed: () {
+            showModalBottomSheet(
+              isScrollControlled: true,
+              context: context,
+              builder: (context) => SingleChildScrollView(
+                child: Container(
+                  padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewInsets.bottom),
+                  child: Container(
+                    color: const Color.fromARGB(255, 60, 116, 213),
+                    child: const AddDetails(),
+                  ),
+                ),
+              ),
+            );
+          },
           child: const Icon(Icons.save_as_rounded),
         ),
         appBar: AppBar(
@@ -54,8 +45,8 @@ class EditFolder extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: const TextStyle(color: Colors.amberAccent),
                 onChanged: (value) {
-                  searchItems(value);
-                  updateItemList();
+                  // searchItems(value);
+                  // updateItemList();
                 },
                 controller: editingControler,
                 decoration: const InputDecoration(
@@ -72,17 +63,18 @@ class EditFolder extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: ListView.builder(
-                itemCount: items.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(
-                      items[index],
-                      style: const TextStyle(color: Colors.amberAccent),
-                    ),
-                  );
-                },
-              ),
+              child: DetailsList(),
+              // child: ListView.builder(
+              //   itemCount: items.length,
+              //   itemBuilder: (context, index) {
+              //     return ListTile(
+              //       title: Text(
+              //         items[index],
+              //         style: const TextStyle(color: Colors.amberAccent),
+              //       ),
+              //     );
+              //   },
+              // ),
             ),
           ],
         ));

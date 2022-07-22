@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:my_notes/add_floder.dart';
+import 'package:my_notes/add_folder.dart';
 import 'folder_list.dart';
-import 'add_floder.dart';
+import 'add_folder.dart';
 
 class NotesHomeScreen extends StatelessWidget {
   const NotesHomeScreen({Key? key}) : super(key: key);
