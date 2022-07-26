@@ -3,8 +3,10 @@ import 'details_data.dart';
 import 'package:provider/provider.dart';
 
 class DetailsList extends StatelessWidget {
+  final String detailOfFolderName;
   const DetailsList({
     Key? key,
+    required this.detailOfFolderName,
   }) : super(key: key);
 
   @override

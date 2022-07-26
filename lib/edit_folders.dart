@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_notes/add_details.dart';
 import 'package:my_notes/details_data.dart';
 import 'package:my_notes/details_list.dart';
+import 'package:provider/provider.dart';
 
 class EditFolder extends StatelessWidget {
   final String folderName;
@@ -9,8 +10,6 @@ class EditFolder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController editingControler = TextEditingController();
-
     return Scaffold(
         backgroundColor: Colors.grey[900],
         floatingActionButton: FloatingActionButton(
@@ -25,7 +24,9 @@ class EditFolder extends StatelessWidget {
                       bottom: MediaQuery.of(context).viewInsets.bottom),
                   child: Container(
                     color: const Color.fromARGB(255, 60, 116, 213),
-                    child: const AddDetails(),
+                    child: AddDetails(
+                      detailOfFolderName: folderName,
+                    ),
                   ),
                 ),
               ),
@@ -45,10 +46,9 @@ class EditFolder extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: const TextStyle(color: Colors.amberAccent),
                 onChanged: (value) {
-                  // searchItems(value);
-                  // updateItemList();
+                  Provider.of<DetailData>(context, listen: false)
+                      .upDateList(value);
                 },
-                controller: editingControler,
                 decoration: const InputDecoration(
                     hintStyle: TextStyle(color: Colors.amberAccent),
                     hintText: 'Type to search',
@@ -63,18 +63,7 @@ class EditFolder extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: DetailsList(),
-              // child: ListView.builder(
-              //   itemCount: items.length,
-              //   itemBuilder: (context, index) {
-              //     return ListTile(
-              //       title: Text(
-              //         items[index],
-              //         style: const TextStyle(color: Colors.amberAccent),
-              //       ),
-              //     );
-              //   },
-              // ),
+              child: DetailsList(detailOfFolderName: folderName),
             ),
           ],
         ));

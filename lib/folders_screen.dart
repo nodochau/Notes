@@ -27,7 +27,7 @@ class Folders extends StatelessWidget {
               backgroundColor: const Color(0xFFFE4A49),
               foregroundColor: Colors.white,
               icon: Icons.edit,
-              label: 'Edit',
+              label: 'View',
               borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(30.0),
                   bottomLeft: Radius.circular(30.0)),

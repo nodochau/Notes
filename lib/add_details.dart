@@ -3,13 +3,15 @@ import 'package:my_notes/details_data.dart';
 import 'package:provider/provider.dart';
 
 class AddDetails extends StatelessWidget {
-  const AddDetails({Key? key}) : super(key: key);
+  final String detailOfFolderName;
+  const AddDetails({Key? key, required this.detailOfFolderName})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     late String titleNote;
     late String detailsNote;
-    int numberOfNote = 0;
+
     TextEditingController myTitleTextEditingController =
         TextEditingController(text: 'Title: ');
     TextEditingController myDetailsTextEditingController =
@@ -60,9 +62,12 @@ class AddDetails extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  numberOfNote++;
-                  Provider.of<DetailData>(context, listen: false)
-                      .addDetails(titleNote, detailsNote, numberOfNote);
+                  int numberOfNote =
+                      Provider.of<DetailData>(context, listen: false)
+                              .listDetailCount +
+                          1;
+                  Provider.of<DetailData>(context, listen: false).addDetails(
+                      titleNote, detailsNote, detailOfFolderName, numberOfNote);
                   Navigator.pop(context);
                 },
                 child: const Text(
